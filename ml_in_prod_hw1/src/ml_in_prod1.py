@@ -37,7 +37,6 @@ def main(loaded : DictConfig):
 
     loggers.setup_logging()
 
-
     if loaded.eval == False:
         callback_build(loaded)
     else:

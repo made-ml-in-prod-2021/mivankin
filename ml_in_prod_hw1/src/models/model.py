@@ -5,6 +5,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 
+
+from sklearn.pipeline import FeatureUnion, Pipeline
+from features import FeaturesTransformer
+
 from utils import loggers as lg
 
 DEFAULT_DATASET_PATH = 'data/heart.csv'
@@ -129,6 +133,10 @@ def load_model(path):
 def callback_build(arguments):
     uci_model = UCImodel()
     uci_model.load_dataset(arguments.dataset_path)
+
+    pipeline = Pipeline(steps=[('features_pipeline', FeaturesTransformer(uci_model.X.columns))])
+    pipeline.fit(uci_model.X)
+
     uci_model.split_and_fit()
     dump_model(uci_model, arguments.dump_model_path)
     lg.lgr_info.info("UCI model builded")
