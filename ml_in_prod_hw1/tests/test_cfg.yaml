@@ -1,0 +1,11 @@
+test_eval: True
+test_dataset_path: 'data/heart.csv'
+test_dump_model_path: 'model.pkl'
+test_load_model_path: 'model.pkl'
+test_predict_path: 'data/test.csv'
+test_save_path: 'preds.out'
+test_solver: 'saga'
+test_reg: 'none'
+test_max_iter: 10000
+test_seed: 21
+sample_size: 300
