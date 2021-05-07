@@ -32,18 +32,11 @@ class ConfigParams:
 def main(loaded : DictConfig):
     """Main function in  Heart Disease UCI classification model utility
     """
-    #loaded = OmegaConf.load("train_config.yaml")
-    #print(pd.read_csv(loaded.dataset_path))
+
     os.chdir(hydra.utils.get_original_cwd())
 
     loggers.setup_logging()
 
-    #config_schema = class_schema(ConfigParams)
-
-    #cfg = config_schema()
-
-    #with open('train_config.yaml', 'r') as f:
-    #    loaded = cfg.load(yaml.safe_load(f))
 
     if loaded.eval == False:
         callback_build(loaded)
