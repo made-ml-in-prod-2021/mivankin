@@ -1,35 +1,16 @@
-import io
+"""
+ML in production homework 1, main function
+Author: MADE DS-22 Ivankin M.
+"""
 import os
-import pandas as pd
-import pickle
-
-from utils import loggers
-
-from models import callback_build, callback_predict
-
-from dataclasses import dataclass
-from marshmallow_dataclass import class_schema
-import yaml
 import hydra
-from omegaconf import DictConfig, OmegaConf
-
-@dataclass()
-class ConfigParams:
-    eval: bool
-    dataset_path: str
-    dump_model_path: str
-    load_model_path: str
-    predict_path: str
-    save_path: str
-    solver: str
-    reg: str
-    max_iter: int
-    seed: int
-    sample_size: int
+from omegaconf import DictConfig
+from utils import loggers
+from models import callback_build, callback_predict
 
 
 @hydra.main(config_name="train_config")
-def main(loaded : DictConfig):
+def main(loaded: DictConfig):
     """Main function in  Heart Disease UCI classification model utility
     """
 
@@ -37,7 +18,7 @@ def main(loaded : DictConfig):
 
     loggers.setup_logging()
 
-    if loaded.eval == False:
+    if loaded.eval is False:
         callback_build(loaded)
     else:
         callback_predict(loaded)

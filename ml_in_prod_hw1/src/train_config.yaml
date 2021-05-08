@@ -1,4 +1,4 @@
-eval: False
+eval: True
 dataset_path: "data/heart.csv"
 dump_model_path: 'model.pkl'
 load_model_path: 'model.pkl'

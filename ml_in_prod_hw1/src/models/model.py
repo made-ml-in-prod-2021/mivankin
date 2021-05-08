@@ -1,3 +1,6 @@
+"""
+UCI model
+"""
 import pickle
 import numpy as np
 import pandas as pd
@@ -6,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 
 
-from sklearn.pipeline import FeatureUnion, Pipeline
+from sklearn.pipeline import Pipeline
 from features import FeaturesTransformer
 
 from utils import loggers as lg
@@ -20,7 +23,21 @@ OUT_PREDICTIONS_PATH = 'preds.out'
 
 
 class UCImodel:
+    """
+    UCI model class for build, dump, load model and generate predictions
+    """
     def __init__(self, solver='liblinear', penalty='l2', max_iter=100, random_state=42):
+        """
+        UCI model constructor
+
+        Keyword arguments:
+            - solver - Algorithm to use in the optimization problem. {‘newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’, ‘saga’}
+            - penalty - Used to specify the norm used in the penalization. The ‘newton-cg’, ‘sag’ and ‘lbfgs’ solvers
+              support only l2 penalties. ‘elasticnet’ is only supported by the ‘saga’ solver. If ‘none’ (not supported
+              by the liblinear solver), no regularization is applied.
+            - max_iter - Maximum number of iterations taken for the solvers to converge.
+            - random_state - Used when solver == ‘sag’, ‘saga’ or ‘liblinear’ to shuffle the data
+        """
         lg.lgr_info.info("Init model...")
 
         self.dataset = None
@@ -30,15 +47,21 @@ class UCImodel:
         self.Y_test = None
         self.X = None
         self.y = None
-        
-        self.model = LogisticRegression(
-                                solver=solver, 
-                                penalty=penalty, 
-                                max_iter=max_iter, 
-                                random_state=random_state
-                                )
 
-    def load_dataset(self, path: str):
+        self.model = LogisticRegression(
+            solver=solver,
+            penalty=penalty,
+            max_iter=max_iter,
+            random_state=random_state
+            )
+
+    def load_dataset(self, path: str) -> pd.DataFrame:
+        """
+        Function for load dataset
+
+        Keyword arguments:
+            path - string with path for loading dataset
+        """
         lg.lgr_info.info("Loading dataset...")
         try:
             self.dataset = pd.read_csv(path)
@@ -49,34 +72,41 @@ class UCImodel:
 
         try:
             self.X = pd.DataFrame(np.c_[
-            self.dataset.age,
-            self.dataset.sex,
-            self.dataset.cp, 
-            self.dataset.restecg, 
-            self.dataset.thalach, 
-            self.dataset.exang,
-            self.dataset.chol,
-            self.dataset.slope,
-            self.dataset.ca,
-            self.dataset.thal
+                self.dataset.age,
+                self.dataset.sex,
+                self.dataset.cp,
+                self.dataset.restecg,
+                self.dataset.thalach,
+                self.dataset.exang,
+                self.dataset.chol,
+                self.dataset.slope,
+                self.dataset.ca,
+                self.dataset.thal
             ])
 
             self.y = self.dataset.target
         except AttributeError:
             lg.lgr.error(f"Invalid data for Heart Disease UCI classification, check columns headers, or data from {path}")
             return None
-            
+
         return self.dataset
-    
+
     def split_and_fit(self, test_size=0.2, random_state=42):
+        """
+        Function for splitting data and fit model
+
+        keyword arguments:
+            - test_size - size for test data
+            - random_state - used to shuffle the data
+        """
         lg.lgr_info.info("Splitting data...")
         _exec_value = 0
         try:
             self.X_train, self.X_test, self.Y_train, self.Y_test = train_test_split(
-                                                                        self.X, self.y,
-                                                                        test_size=test_size,
-                                                                        random_state=random_state
-                                                                    )
+                self.X, self.y,
+                test_size=test_size,
+                random_state=random_state
+                )
         except TypeError:
             lg.lgr.error(f"Expected sequence or array-like, got for X {type(self.X)} and for y {type(self.y)}")
             _exec_value = -1
@@ -91,25 +121,38 @@ class UCImodel:
         return _exec_value
 
     def __fit(self):
+        """
+        Function for fit model
+        """
         lg.lgr_info.info("Fitting model...")
         self.model.fit(self.X_train, self.Y_train)
         lg.lgr_info.info("Checking fit...")
         train_auc, test_auc = self.auc()
         lg.lgr_info.info(f"AUC score: train is {np.round(train_auc, 4)}, test is {np.round(test_auc, 4)}")
-    
-    def auc(self):
+
+    def auc(self) -> list:
+        """
+        Function for calc AUC score
+        """
         lg.lgr_info.info("AUC calculating...")
         auc_values = list()
         for name, X, y, model in [
-            ('train', self.X_train, self.Y_train, self.model),
-            ('test ', self.X_test, self.Y_test, self.model)
+                ('train', self.X_train, self.Y_train, self.model),
+                ('test ', self.X_test, self.Y_test, self.model)
         ]:
             proba = model.predict_proba(X)[:, 1]
             auc_values.append(roc_auc_score(y, proba))
-            
+
         return auc_values
 
-    def predict(self, queries, path):
+    def predict(self, queries: str, path: str):
+        """
+        Function for make predictions on input queries
+
+        Keyword arguments:
+            - queries - string with path for queries
+            - path - string with path for dump predictions
+        """
         lg.lgr_info.info("reading csv for predictions...")
         queries = pd.read_csv(queries)
         lg.lgr_info.info("Wait for predictions...")
@@ -121,16 +164,35 @@ class UCImodel:
         return preds
 
 def dump_model(obj, path):
+    """
+    Function for dump model
+
+    Keyword arguments:
+        - obj - model instance
+        - path - string with path for dump model
+    """
     lg.lgr_info.info("Dump model...")
     with open(path, "wb") as file:
         pickle.dump(obj, file)
 
 def load_model(path):
+    """
+    Function for load model
+
+    Keyword arguments:
+        - path - string with path for load model
+    """
     lg.lgr_info.info("Loading model...")
     with open(path, "rb") as file:
         return pickle.load(file)
 
 def callback_build(arguments):
+    """
+    Function for build model
+
+    Keyword arguments:
+        - arguments - yaml arguments, loading with hydra
+    """
     uci_model = UCImodel()
     uci_model.load_dataset(arguments.dataset_path)
 
@@ -142,6 +204,12 @@ def callback_build(arguments):
     lg.lgr_info.info("UCI model builded")
 
 def callback_predict(arguments):
+    """
+    Function for make predictions
+
+    Keyword arguments:
+        - arguments - yaml arguments, loading with hydra
+    """
     uci_model = load_model(arguments.load_model_path)
     uci_model.predict(arguments.predict_path, arguments.save_path)
     lg.lgr_info.info(f"Predictions calculated and dumped to {arguments.save_path}, check it")

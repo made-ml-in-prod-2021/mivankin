@@ -3,7 +3,7 @@ import pytest
 import pandas as pd
 import numpy as np
 from src.models import model
-from src.features import fake_data
+from src.features import DataFaker
 from utils.loggers import setup_logging, lgr, lgr_info
 from sklearn.linear_model import LogisticRegression
 
@@ -159,7 +159,7 @@ def test_predict():
 	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
 	test_model.split_and_fit()
 
-	test_sample = fake_data(test_df)
+	test_sample = DataFaker(test_df)
 	test_sample.ditribution_calc()
 	test_sample.generate_samples(test_params.sample_size).to_csv(test_params.test_save_path, index=False)
 	test_pred = test_model.predict(test_params.test_save_path, test_params.test_save_path)
@@ -176,7 +176,7 @@ def test_all_build_model():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_sample = fake_data(pd.read_csv(test_params.test_dataset_path))
+	test_sample = DataFaker(pd.read_csv(test_params.test_dataset_path))
 	test_sample.ditribution_calc()
 	test_sample = test_sample.generate_samples(test_params.sample_size)
 	test_sample.insert(test_sample.shape[1], 'target', [int(random.randint(0, 1)) for i in range(test_params.sample_size)])

@@ -1,10 +1,10 @@
 from .fake_data import (
-	fake_data,
+	DataFaker,
 )
 
 from .transformer import FeaturesTransformer
 
 __all__ = [
-	"fake_data",
+	"DataFaker",
 	"FeaturesTransformer"
 ]

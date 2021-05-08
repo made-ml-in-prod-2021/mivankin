@@ -1,12 +1,12 @@
 import pytest
-from src.features import fake_data
+from src.features import DataFaker
 import pandas as pd
 import random
 
 
 def test_fake_data_instance():
 	test_df = pd.DataFrame()
-	test_fake = fake_data(test_df)
+	test_fake = DataFaker(test_df)
 	
 	assert isinstance(test_fake.data, type(pd.DataFrame())), (
 		f"Expected pandas dataframe in fake_data, but return {type(test_fake.data)}"
@@ -18,7 +18,7 @@ def test_fake_data_instance():
 
 def test_ditribution_calc():
 	test_df = pd.DataFrame()
-	test_fake = fake_data(test_df)
+	test_fake = DataFaker(test_df)
 	
 	assert test_fake.distr_params.shape == (0, 2), (
 		f"Expected pandas dataframe in fake_data, but return {type(test_fake.data)}"
@@ -28,7 +28,7 @@ def test_generate_samples():
 	sample_size = 100
 	test_df = pd.DataFrame([random.randint(0, i) for i in range(sample_size)])
 	
-	test_sample = fake_data(test_df)
+	test_sample = DataFaker(test_df)
 	test_sample.ditribution_calc()
 	test_sample = test_sample.generate_samples(sample_size)
 	
@@ -41,7 +41,7 @@ def test_check_ks_2samp():
 	sample_size = 100
 	test_df = pd.DataFrame([random.randint(0, i) for i in range(sample_size)])
 	another_test_df = pd.DataFrame([random.randint(0, i) for i in range(sample_size, sample_size * 2)])
-	test_sample = fake_data(test_df)
+	test_sample = DataFaker(test_df)
 	test_sample.ditribution_calc()
 	test_sample.generate_samples(sample_size)
 	

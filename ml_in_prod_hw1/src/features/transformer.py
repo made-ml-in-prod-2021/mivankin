@@ -1,17 +1,34 @@
+"""
+Transformer for scip features in Dataframe
+"""
 import pandas as pd
-import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.preprocessing import StandardScaler
-from sklearn.impute import SimpleImputer
 
 
 class FeaturesTransformer(BaseEstimator, TransformerMixin):
+    """
+    Transformer for scip features in Dataframe
+    """
     def __init__(self, features):
+        """
+        Features transformer constructor
+        """
         self.features = features
 
     def fit(self, X, y=None):
+        """
+        Features transformer fit function
+        """
         return self
 
-    def transform(selfself, X, y=None):
+    def transform(self, X, y=None):
+        """
+        Features transformer transform function
+        """
         return X[self.features]
 
+    def fit_transfrom(self, X, y=None):
+        """
+        Features transformer fit_transform function
+        """
+        return X[self.features]
