@@ -5,6 +5,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 
@@ -26,7 +27,7 @@ class UCImodel:
     """
     UCI model class for build, dump, load model and generate predictions
     """
-    def __init__(self, solver='liblinear', penalty='l2', max_iter=100, random_state=42):
+    def __init__(self, model_type='LogisticRegression', solver='liblinear', penalty='l2', max_iter=100, random_state=42):
         """
         UCI model constructor
 
@@ -38,7 +39,7 @@ class UCImodel:
             - max_iter - Maximum number of iterations taken for the solvers to converge.
             - random_state - Used when solver == ‘sag’, ‘saga’ or ‘liblinear’ to shuffle the data
         """
-        lg.lgr_info.info("Init model...")
+        lg.lgr_info.info(f"Init model {model_type}...")
 
         self.dataset = None
         self.X_train = None
@@ -48,12 +49,24 @@ class UCImodel:
         self.X = None
         self.y = None
 
-        self.model = LogisticRegression(
-            solver=solver,
-            penalty=penalty,
-            max_iter=max_iter,
-            random_state=random_state
-            )
+        if model_type == 'LogisticRegression':
+            try:
+                self.model = LogisticRegression(
+                    solver=solver,
+                    penalty=penalty,
+                    max_iter=max_iter,
+                    random_state=random_state
+                    )
+            except ValueError:
+                lg.lgr.error("Unresolved params for model")
+        elif model_type == 'GaussianNB':
+            try:
+                self.model = GaussianNB()
+            except ValueError:
+                lg.lgr.error("Unresolved params for model")
+        else:
+            lg.lgr.error(f"Type of model {model_type} not supported, change it for availables models")
+            raise NotImplementedError()
 
     def load_dataset(self, path: str) -> pd.DataFrame:
         """
@@ -193,7 +206,7 @@ def callback_build(arguments):
     Keyword arguments:
         - arguments - yaml arguments, loading with hydra
     """
-    uci_model = UCImodel()
+    uci_model = UCImodel(arguments.model, arguments.solver, arguments.reg, arguments.max_iter, arguments.seed)
     uci_model.load_dataset(arguments.dataset_path)
 
     pipeline = Pipeline(steps=[('features_pipeline', FeaturesTransformer(uci_model.X.columns))])

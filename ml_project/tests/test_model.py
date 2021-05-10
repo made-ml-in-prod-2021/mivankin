@@ -6,6 +6,7 @@ from src.models import model
 from src.features import DataFaker
 from utils.loggers import setup_logging, lgr, lgr_info
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
 
 from dataclasses import dataclass
 from marshmallow_dataclass import class_schema
@@ -20,6 +21,7 @@ class test_config:
 	test_load_model_path: str
 	test_predict_path: str
 	test_save_path: str
+	test_model: str
 	test_solver: str
 	test_reg: str
 	test_max_iter: int
@@ -43,12 +45,17 @@ def test_init_model():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed).model
-	
-	assert isinstance(test_model, type(LogisticRegression())), (
-		f"builded model instance is {type(test_model)}, but not sklearn LogisticRegression() instance"
-	)
-	
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed).model
+
+	if test_params.test_model == 'LogisticRegression':
+		assert isinstance(test_model, type(LogisticRegression())), (
+			f"builded model instance is {type(test_model)}, but not sklearn LogisticRegression() instance"
+		)
+	elif test_params.test_model == 'GaussianNB':
+		assert isinstance(test_model, type(GaussianNB())), (
+			f"builded model instance is {type(test_model)}, but not sklearn GaussianNB() instance"
+		)
+
 def test_model_params():
 	test_schema = class_schema(test_config)
 	test_inst = test_schema()
@@ -56,25 +63,30 @@ def test_model_params():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed).model
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed).model
 	params_dict = test_model.get_params()
-	
-	assert params_dict['solver'] == test_params.test_solver, (
-		f"solver must be {test_params.test_solver}, but {params_dict['solver']} found"
-	)
-	
-	assert params_dict['penalty'] == test_params.test_reg, (
-		f"solver must be {test_params.test_reg}, but {params_dict['penalty']} found"
-	)
 
-	assert params_dict['max_iter'] == test_params.test_max_iter, (
-		f"solver must be {test_params.test_max_iter}, but {params_dict['max_iter']} found"
-	)
+	if test_params.test_model == 'LogisticRegression':
+		assert params_dict['solver'] == test_params.test_solver, (
+			f"solver must be {test_params.test_solver}, but {params_dict['solver']} found"
+		)
 
-	assert params_dict['random_state'] == test_params.test_seed, (
-		f"solver must be {test_params.test_seed}, but {params_dict['random_state']} found"
-	)
-	
+		assert params_dict['penalty'] == test_params.test_reg, (
+			f"solver must be {test_params.test_reg}, but {params_dict['penalty']} found"
+		)
+
+		assert params_dict['max_iter'] == test_params.test_max_iter, (
+			f"solver must be {test_params.test_max_iter}, but {params_dict['max_iter']} found"
+		)
+
+		assert params_dict['random_state'] == test_params.test_seed, (
+			f"solver must be {test_params.test_seed}, but {params_dict['random_state']} found"
+		)
+	elif test_params.test_model == 'GaussianNB':
+		assert params_dict['var_smoothing'] == 1e-9, (
+			f"Not GaussianNB instance"
+		)
+
 def test_load_dataset():
 	test_schema = class_schema(test_config)
 	test_inst = test_schema()
@@ -82,7 +94,7 @@ def test_load_dataset():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
 	
 	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
 	
@@ -97,7 +109,7 @@ def test_fit_without_load_data():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
 	error_value = test_model.split_and_fit()
 	
 	assert -1 == error_value, (
@@ -111,7 +123,7 @@ def test_fit_with_load_data():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
 	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
 	error_value = test_model.split_and_fit()
 	
@@ -126,7 +138,7 @@ def test_auc():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
 	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
 	test_model.split_and_fit()
 	
@@ -155,7 +167,7 @@ def test_predict():
 	with open('test_cfg.yaml', 'r') as f:
 		test_params = test_inst.load(yaml.safe_load(f))
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
 	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
 	test_model.split_and_fit()
 
@@ -182,7 +194,7 @@ def test_all_build_model():
 	test_sample.insert(test_sample.shape[1], 'target', [int(random.randint(0, 1)) for i in range(test_params.sample_size)])
 	test_sample.to_csv('test_fake.csv')
 
-	test_model = model.UCImodel(test_params.test_solver, test_params.test_reg, test_params.test_max_iter,
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter,
 								test_params.test_seed)
 
 
