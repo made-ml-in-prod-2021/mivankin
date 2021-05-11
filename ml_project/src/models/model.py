@@ -15,12 +15,7 @@ from features import FeaturesTransformer
 
 from utils import loggers as lg
 
-DEFAULT_DATASET_PATH = 'data/heart.csv'
-DEFAULT_MODEL_PATH = 'model.pkl'
 
-INFERENCE_DATASET_PATH = 'test.csv'
-
-OUT_PREDICTIONS_PATH = 'preds.out'
 
 
 class UCImodel:

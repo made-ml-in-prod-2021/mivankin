@@ -96,7 +96,7 @@ def test_load_dataset():
 
 	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
 	
-	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
+	test_df = test_model.load_dataset(test_params.test_dataset_path)
 	
 	assert isinstance(test_df, type(pd.DataFrame())), (
 		f"Pandas dataframe expected, but return {type(test_df)}"
@@ -124,7 +124,7 @@ def test_fit_with_load_data():
 		test_params = test_inst.load(yaml.safe_load(f))
 
 	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
-	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
+	test_df = test_model.load_dataset(test_params.test_dataset_path)
 	error_value = test_model.split_and_fit()
 	
 	assert 0 == error_value, (
@@ -139,7 +139,7 @@ def test_auc():
 		test_params = test_inst.load(yaml.safe_load(f))
 
 	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
-	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
+	test_df = test_model.load_dataset(test_params.test_dataset_path)
 	test_model.split_and_fit()
 	
 	train_auc, test_auc = test_model.auc()
@@ -168,7 +168,7 @@ def test_predict():
 		test_params = test_inst.load(yaml.safe_load(f))
 
 	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
-	test_df = test_model.load_dataset(model.DEFAULT_DATASET_PATH)
+	test_df = test_model.load_dataset(test_params.test_dataset_path)
 	test_model.split_and_fit()
 
 	test_sample = DataFaker(test_df)

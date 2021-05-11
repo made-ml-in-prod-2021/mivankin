@@ -16,11 +16,11 @@ def setup_logging():
     )
 
     file_handler = logging.FileHandler(
-        filename="heart_dissease_uci.log"
+        filename="outputs\logs\heart_dissease_uci.log"
     )
 
     info_handler = logging.FileHandler(
-        filename="heart_dissease_uci.info"
+        filename="outputs\logs\heart_dissease_uci.info"
     )
 
     info_handler.setLevel(logging.INFO)

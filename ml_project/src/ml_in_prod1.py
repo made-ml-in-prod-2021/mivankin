@@ -8,7 +8,7 @@ from omegaconf import DictConfig
 from utils import loggers
 from models import callback_build, callback_predict
 
-@hydra.main(config_path=".", config_name="train_config")
+@hydra.main(config_path="../configs/.", config_name="train_config")
 def main(loaded: DictConfig):
     """Main function in  Heart Disease UCI classification model utility
     """

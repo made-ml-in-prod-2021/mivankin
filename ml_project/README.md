@@ -20,7 +20,7 @@
     
     pytest --cov -v . test_fake_data.py
     python src/ml_in_prod1.py
-    Файл для конфигурации /src/train_config.yaml
+    Файл для конфигурации /configs/train_config.yaml
     
 Как просмотреть отчет
 ------------
@@ -40,7 +40,7 @@
     
 Где и как делать предсказания
 ------------
-    Запуск модели основан на yaml конфигурации ../src/train_config.yaml
+    Запуск модели основан на yaml конфигурации ../configs/train_config.yaml
     Для запуска предсказаний на ваших данных необходимо:
      1) Указать путь в поле predict_path
      2) Изменить поле на eval: True
@@ -49,8 +49,8 @@
 ------------
     Hydra обеспечивает вывод логов в консоль и вы ничего не упустите.
     Тем не менее дополнительно логи хранятся в:
-     1) ../src/heart_dissease_uci.info - Логи уровня INFO
-     2) ../src/heart_dissease_uci.log - Логи уровня ERROR
+     1) ../src/outputs/logs/heart_dissease_uci.info - Логи уровня INFO
+     2) ../src/outputs/logs/heart_dissease_uci.log - Логи уровня ERROR
 
 Самооценка
 ------------

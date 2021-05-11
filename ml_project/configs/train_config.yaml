@@ -1,8 +1,8 @@
-eval: False
-dataset_path: "data/heart.csv"
+eval: True
+dataset_path: "../data/raw/heart.csv"
 dump_model_path: 'model.pkl'
 load_model_path: 'model.pkl'
-predict_path: 'data/test.csv'
+predict_path: '../data/raw/test.csv'
 save_path: 'preds.out'
 model: 'LogisticRegression'
 solver: 'saga'
