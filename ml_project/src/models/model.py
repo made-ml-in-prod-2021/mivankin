@@ -53,12 +53,12 @@ class UCImodel:
                     random_state=random_state
                     )
             except ValueError:
-                lg.lgr.error("Unresolved params for model")
+                lg.lgr.error(f"Unresolved params for model solver: {solver}, penalty: {penalty}, max_iter: {max_iter}, random_state: {random_state}")
         elif model_type == 'GaussianNB':
             try:
                 self.model = GaussianNB()
             except ValueError:
-                lg.lgr.error("Unresolved params for model")
+                lg.lgr.error(f"Unresolved params for model solver: {solver}, penalty: {penalty}, max_iter: {max_iter}, random_state: {random_state}")
         else:
             lg.lgr.error(f"Type of model {model_type} not supported, change it for availables models")
             raise NotImplementedError()
@@ -70,13 +70,15 @@ class UCImodel:
         Keyword arguments:
             path - string with path for loading dataset
         """
-        lg.lgr_info.info("Loading dataset...")
+        lg.lgr_info.info(f"Loading dataset from {path}...")
         try:
             self.dataset = pd.read_csv(path)
         except pd.errors.ParserError:
-            lg.lgr.error("ParserError, check dataset type, csv dataset expected")
+            lg.lgr.error(f"ParserError, check dataset type in {path}, csv dataset expected")
+            raise NotImplementedError()
         except FileNotFoundError:
-            lg.lgr.error("FileNotFoundError, dataset not found, check it")
+            lg.lgr.error(f"FileNotFoundError, dataset not found, check it in {path}")
+            raise NotImplementedError()
 
         try:
             self.X = pd.DataFrame(np.c_[
@@ -95,7 +97,7 @@ class UCImodel:
             self.y = self.dataset.target
         except AttributeError:
             lg.lgr.error(f"Invalid data for Heart Disease UCI classification, check columns headers, or data from {path}")
-            return None
+            raise NotImplementedError()
 
         return self.dataset
 
@@ -107,8 +109,8 @@ class UCImodel:
             - test_size - size for test data
             - random_state - used to shuffle the data
         """
-        lg.lgr_info.info("Splitting data...")
         _exec_value = 0
+        lg.lgr_info.info(f"Splitting data by {test_size} test size...")
         try:
             self.X_train, self.X_test, self.Y_train, self.Y_test = train_test_split(
                 self.X, self.y,
@@ -117,16 +119,15 @@ class UCImodel:
                 )
         except TypeError:
             lg.lgr.error(f"Expected sequence or array-like, got for X {type(self.X)} and for y {type(self.y)}")
-            _exec_value = -1
-            return _exec_value
+            raise NotImplementedError()
         except ValueError:
             lg.lgr.error(f"The resulting train set will be empty. Adjust any of the aforementioned parameters or check data size.")
-            _exec_value = -1
-            return _exec_value
+            raise NotImplementedError()
 
         self.__fit()
 
         return _exec_value
+
 
     def __fit(self):
         """

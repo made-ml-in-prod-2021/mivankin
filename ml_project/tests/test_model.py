@@ -110,7 +110,10 @@ def test_fit_without_load_data():
 		test_params = test_inst.load(yaml.safe_load(f))
 
 	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
-	error_value = test_model.split_and_fit()
+	try:
+		error_value = test_model.split_and_fit()
+	except NotImplementedError:
+		error_value = -1
 	
 	assert -1 == error_value, (
 		f"Method fit() evaluate, without dataset load"
