@@ -1,5 +1,5 @@
 import pytest
-from src.features import DataFaker
+from tests.features import DataFaker
 import pandas as pd
 import random
 

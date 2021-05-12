@@ -3,10 +3,6 @@
   "tests/test_fake_data.py::test_ditribution_calc",
   "tests/test_fake_data.py::test_generate_samples",
   "tests/test_fake_data.py::test_check_ks_2samp",
-  "tests/test_fake_data.py::test_fake_data_instance",
-  "tests/test_fake_data.py::test_ditribution_calc",
-  "tests/test_fake_data.py::test_generate_samples",
-  "tests/test_fake_data.py::test_check_ks_2samp",
   "tests/test_model.py::test_setup_logger",
   "tests/test_model.py::test_init_model",
   "tests/test_model.py::test_model_params",
@@ -15,5 +11,10 @@
   "tests/test_model.py::test_fit_with_load_data",
   "tests/test_model.py::test_auc",
   "tests/test_model.py::test_predict",
-  "tests/test_model.py::test_all_build_model"
+  "tests/test_model.py::test_all_build_model",
+  "tests/test_model.py::test_all_predict_model",
+  "tests/test_fake_data.py::test_fake_data_instance",
+  "tests/test_fake_data.py::test_ditribution_calc",
+  "tests/test_fake_data.py::test_generate_samples",
+  "tests/test_fake_data.py::test_check_ks_2samp"
 ]
