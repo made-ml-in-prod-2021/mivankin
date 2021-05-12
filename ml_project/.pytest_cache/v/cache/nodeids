@@ -12,7 +12,10 @@
   "tests/test_model.py::test_auc",
   "tests/test_model.py::test_predict",
   "tests/test_model.py::test_all_build_model",
+<<<<<<< HEAD
   "tests/test_model.py::test_all_predict_model",
+=======
+>>>>>>> 5fe9aa71890d0d86ac2bcb0c19a07994f596a232
   "tests/test_fake_data.py::test_fake_data_instance",
   "tests/test_fake_data.py::test_ditribution_calc",
   "tests/test_fake_data.py::test_generate_samples",

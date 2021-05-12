@@ -98,11 +98,22 @@ def test_load_dataset(init_model):
 		f"Pandas dataframe expected, but return {type(test_df)}"
 	)
 	
+<<<<<<< HEAD
 def test_fit_without_load_data(init_model):
 	test_model, test_params = init_model
 	test_model.X = []
 	test_model.y = []
 
+=======
+def test_fit_without_load_data():
+	test_schema = class_schema(test_config)
+	test_inst = test_schema()
+
+	with open('test_cfg.yaml', 'r') as f:
+		test_params = test_inst.load(yaml.safe_load(f))
+
+	test_model = model.UCImodel(test_params.test_model, test_params.test_solver, test_params.test_reg, test_params.test_max_iter, test_params.test_seed)
+>>>>>>> 5fe9aa71890d0d86ac2bcb0c19a07994f596a232
 	try:
 		error_value = test_model.split_and_fit()
 	except NotImplementedError:
