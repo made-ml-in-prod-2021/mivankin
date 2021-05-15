@@ -123,12 +123,23 @@ def test_fit_with_load_data(init_model):
     test_model, test_params = init_model
 
     test_df = test_model.load_dataset(test_params.dataset_path)
-    error_value = test_model.split_and_fit()
+    test_model.split_and_fit()
 
-    assert 0 == error_value, (
-        f"Method fit() not evaluate"
+    assert None is not test_model.X_train, (
+        f"Method fit_with_load_data must return pandas DataFrame for X_train but return {type(test_model.X_train)}"
     )
 
+    assert None is not test_model.Y_train, (
+        f"Method fit_with_load_data must return pandas DataFrame for Y_train but return {type(test_model.Y_train)}"
+    )
+
+    assert None is not test_model.X_test, (
+        f"Method fit_with_load_data must return pandas DataFrame for X_test but return {type(test_model.X_test)}"
+    )
+
+    assert None is not test_model.Y_test, (
+        f"Method fit_with_load_data must return pandas DataFrame for Y_test but return {type(test_model.Y_test)}"
+    )
 
 def test_auc(init_model):
     test_model, test_params = init_model

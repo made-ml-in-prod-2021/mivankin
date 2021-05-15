@@ -109,7 +109,6 @@ class UCImodel:
             - test_size - size for test data
             - random_state - used to shuffle the data
         """
-        _exec_value = 0
         lg.lgr_info.info(f"Splitting data by {test_size} test size...")
         try:
             self.X_train, self.X_test, self.Y_train, self.Y_test = train_test_split(
@@ -125,8 +124,6 @@ class UCImodel:
             raise NotImplementedError()
 
         self.__fit()
-
-        return _exec_value
 
 
     def __fit(self):
