@@ -1,0 +1,12 @@
+eval: True
+dataset_path: "../data/raw/heart.csv"
+dump_model_path: 'model.pkl'
+load_model_path: 'model.pkl'
+predict_path: '../data/raw/test.csv'
+save_path: 'preds.out'
+model: 'LogisticRegression'
+solver: 'saga'
+reg: 'none'
+max_iter: 10000
+seed: 21
+sample_size: 300
