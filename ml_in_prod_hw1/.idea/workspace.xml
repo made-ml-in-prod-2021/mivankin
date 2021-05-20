@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1fb66bf7-626f-4b5b-bfa6-3bd7b860a10a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/docs/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/commands.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/docs/commands.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/docs/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/getting-started.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/docs/getting-started.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/docs/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/make.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/docs/make.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/models/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/notebooks/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/ml_in_prod.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/notebooks/ml_in_prod.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/references/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/references/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/reports/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/figures/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/reports/figures/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reports/heart_disease_uci.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/reports/heart_disease_uci.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/data/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/heart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/data/heart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/data/test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/features/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/features/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/fake_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/features/fake_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/features/transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heart_dissease_uci.info" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/heart_dissease_uci.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ml_in_prod1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/ml_in_prod1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/models/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/models/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/preds.out" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/preds.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/train_config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/train_config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/utils/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/loggers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/src/utils/loggers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/test_environment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/data/heart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/data/heart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/data/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/data/test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/heart_dissease_uci.info" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/heart_dissease_uci.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/test.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_cfg.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/test_cfg.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_fake.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/test_fake.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_fake_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/test_fake_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tests/test_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tox.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../ml_project/tox.ini" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1sAK8JL3vYG4dIG6EWnmFpWJOnq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ml_project" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ml_in_prod1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ml_in_prod_hw1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\MishaYuliaAlina\PycharmProjects\pythonProject\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/ml_in_prod1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.ml_in_prod1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1fb66bf7-626f-4b5b-bfa6-3bd7b860a10a" name="Default Changelist" comment="" />
+      <created>1620309792500</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620309792500</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="718" y="329" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620407763441">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="718" y="329" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1620407763441" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1620465516136">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1620465516136" />
+    <state width="949" height="282" key="GridCell.Tab.0.bottom" timestamp="1620432571203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571203" />
+    <state width="949" height="282" key="GridCell.Tab.0.center" timestamp="1620432571203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571203" />
+    <state width="949" height="282" key="GridCell.Tab.0.left" timestamp="1620432571203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571203" />
+    <state width="949" height="282" key="GridCell.Tab.0.right" timestamp="1620432571203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571203" />
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1620432571199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571199" />
+    <state width="1899" height="348" key="GridCell.Tab.1.center" timestamp="1620432571199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571199" />
+    <state width="1899" height="348" key="GridCell.Tab.1.left" timestamp="1620432571199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571199" />
+    <state width="1899" height="348" key="GridCell.Tab.1.right" timestamp="1620432571199">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620432571199" />
+  </component>
+</project>

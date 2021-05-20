@@ -9,6 +9,7 @@ from pydantic import BaseModel, conlist
 from typing import List, Union, Optional
 from sklearn.pipeline import Pipeline
 
+from validation import validate
 
 def load_model(path):
     """
@@ -21,13 +22,8 @@ def load_model(path):
         return pickle.load(file)
 
 
-class OutputDataModel(BaseModel):
+class OutputItem(BaseModel):
     label: int
-
-class PriceResponse(BaseModel):
-    id: str
-    price: float
-
 
 class Item(BaseModel):
     age: float
@@ -41,31 +37,38 @@ class Item(BaseModel):
     ca: float
     thal: float
 
-    def convert_to_pandas(self) -> pd.DataFrame:
-        data = pd.DataFrame.from_dict([self.dict()], orient='columns')
-        return data
-
 app = FastAPI()
 
-uci_model: None
+uci_model: Optional[Pipeline] = None
 
 @app.get("/")
 def main():
+    return "UCI service"
+
+@app.on_event("startup")
+def load():
+    global uci_model
     uci_model = load_model('model.pkl')
-    uci_model.auc()
-    return {uci_model.auc()[0]}
 
 @app.get("/auc")
 def get_auc():
     #uci_model = load_model('model.pkl').model
     return {uci_model.auc()[0]}
+    pass
 
-@app.get("/predict", response_model = OutputDataModel)
+@app.get("/health")
+def health() -> bool:
+    return not (uci_model is None)
+
+@app.get("/predict", response_model = OutputItem)
 def predict(request: Item):
-    uci_model = load_model('model.pkl')
-    ans = uci_model.model.predict(request.convert_to_pandas())
-    return OutputDataModel(label=uci_model.model.predict(request.convert_to_pandas()))
+    assert uci_model is not None
+    check_data, fake_col = validate(uci_model, pd.DataFrame.from_dict([request.dict()], orient='columns'))
+    if check_data:
+        return OutputItem(label=uci_model.model.predict(pd.DataFrame.from_dict([request.dict()], orient='columns')))
+    else:
+        raise HTTPException(status_code=400, detail=f"error of data validation in {fake_col}")
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", 50557))
+    uvicorn.run("app:app", host="0.0.0.0", port=os.getenv("PORT", 8000))
