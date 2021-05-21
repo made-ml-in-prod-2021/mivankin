@@ -9,11 +9,9 @@
     - Тесты для сервиса, в том числе для /predict
     - Скрипт для запросов к сервису
     - Валидация входных данных
-    - Написан Dockerfile, собран образ, запущен локально контейнер с сервисом
+    - Написан Dockerfile, собран образ, запущен локально контейнер с сервисом, оптимизирован
     - Реализована возможность запуска тестов из docker контейнера
-    - Образ опублирован в https://hub.docker.com/
-    
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+    - Образ опубликован в https://hub.docker.com/
 
 Сборка образа
 ------------
