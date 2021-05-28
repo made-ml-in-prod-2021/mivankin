@@ -7,7 +7,7 @@ from scipy.stats import multivariate_normal, ks_2samp
 
 from utils import loggers as lg
 
-CATEGORICAL = ['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
+CATEGORICAL = ['age', 'sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal']
 SCIPED = ['fbs', 'oldpeak', 'trestbps', 'target']
 
 
