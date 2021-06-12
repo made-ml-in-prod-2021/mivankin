@@ -7,9 +7,12 @@ x-environment: &airflow_environment
   - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://airflow:airflow@postgres:5432/airflow
   - AIRFLOW__CORE__STORE_DAG_CODE=True
   - AIRFLOW__CORE__STORE_SERIALIZED_DAGS=True
+  - AIRFLOW__CORE__FERNET_KEY=${FERNET_KEY}
   - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
-  - AIRFLOW__CORE__FERNET_KEY='TMaxcVN6JEFmlJ0vKs4YEfw71Du0ZgUWZ4l65lol4AM='
-
+  - AIRFLOW__SMTP__SMTP_HOST=smtp.gmail.com
+  - AIRFLOW__SMTP__SMTP_PORT=587
+  - AIRFLOW__SMTP__SMTP_USER=${GMAIL_USR}
+  - AIRFLOW__SMTP__SMTP_PASSWORD=${GMAIL_PWD}
 
 x-airflow-image: &airflow_image apache/airflow:2.0.0-python3.6
 # ====================================== /AIRFLOW ENVIRONMENT VARIABLES ======================================
@@ -32,7 +35,16 @@ services:
       - postgres
     environment: *airflow_environment
     entrypoint: /bin/bash
-    command: -c 'airflow db init && airflow users create --username admin --password admin --firstname Anonymous --lastname Admin --role Admin --email admin@example.org && airflow connections add fs_default --conn-type fs'
+    command: >-
+      -c 'airflow db init
+      && airflow users create
+      --username admin
+      --password admin
+      --firstname Anonymous
+      --lastname Admin
+      --role Admin
+      --email admin@example.org
+      && airflow connections add fs_default --conn-type fs'
 
   webserver:
     build:
@@ -75,22 +87,46 @@ services:
     image: airflow-ml-base
     restart: "no"
 
-  predict:
-    build:
-      context: images/airflow-predict
-    image: airflow-predict
-    restart: "no"
-
   download:
     build:
-      context: images/airflow-download
-    image: airflow-download
+      context: images/airflow-download-data
+    image: airflow-download-data
     restart: "no"
 
   preprocess:
     build:
-      context: images/airflow-preprocess
-    image: airflow-preprocess
+      context: images/airflow-load
+    image: airflow-load
+    restart: "no"
+
+  split:
+    build:
+      context: images/airflow-split
+    image: airflow-split
+    depends_on:
+      - ml_base
+    restart: "no"
+
+  train:
+    build:
+      context: images/airflow-train
+    image: airflow-train
+    depends_on:
+      - ml_base
+    restart: "no"
+
+  validate:
+    build:
+      context: images/airflow-validate
+    image: airflow-validate
+    depends_on:
+      - ml_base
+    restart: "no"
+
+  predict:
+    build:
+      context: images/airflow-predict
+    image: airflow-predict
     restart: "no"
 
 volumes:
