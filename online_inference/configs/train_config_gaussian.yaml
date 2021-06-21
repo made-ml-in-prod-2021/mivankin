@@ -1,7 +1,0 @@
-eval: False
-dataset_path: "data/heart.csv"
-dump_model_path: 'model.pkl'
-load_model_path: 'model.pkl'
-predict_path: 'data/test.csv'
-save_path: 'preds.out'
-model: 'GaussianNB'
