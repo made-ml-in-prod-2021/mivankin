@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: online-inference-probes
+  labels:
+    app: online-inference-probes
+spec:
+  containers:
+    - image: mivankin/ml_prod_hw2:v2
+      name: online-inference-probes
+      ports:
+        - containerPort: 4000
+      readinessProbe:
+        httpGet:
+          path: /health
+          port: 4000
+        initialDelaySeconds: 15
+        periodSeconds: 15
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 4000
+        initialDelaySeconds: 15
+        periodSeconds: 15
